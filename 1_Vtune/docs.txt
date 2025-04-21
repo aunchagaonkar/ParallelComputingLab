@@ -1,0 +1,28 @@
+# VTune Performance Analysis Example
+
+## Concept
+This program demonstrates performance analysis using Intel VTune profiler by comparing vector addition implementation on CPU vs GPU.
+
+## Components
+- vectorAdditionCPU.cpp: CPU implementation of vector addition
+- vectorAdditionGPU.cu: CUDA GPU implementation of vector addition
+- vectorAdditionCPU: Compiled CPU executable
+- vectorAdditionGPU: Compiled GPU executable
+- run.txt: Commands for execution
+
+## Program Flow
+1. Both programs allocate memory for vectors A, B, and C
+2. Vectors A and B are initialized with values (1 and 2)
+3. Vector addition is performed (C = A + B)
+4. Execution time is measured using clock()
+5. Results are validated and timing information is displayed
+
+## Key Concepts Demonstrated
+- CPU vs GPU performance comparison
+- Memory allocation (standard memory vs CUDA memory)
+- CUDA kernel execution with thread blocks
+- Performance timing techniques
+- Using Intel VTune for profiling applications
+
+## Usage
+The executables can be run directly and VTune can be used to analyze their performance characteristics to understand the differences between CPU and GPU execution models. 

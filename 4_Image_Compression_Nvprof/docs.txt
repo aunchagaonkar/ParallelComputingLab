@@ -1,0 +1,33 @@
+# Image Compression with NVIDIA Profiling Example
+
+## Concept
+This program demonstrates image compression through downsampling (reducing image resolution) with CPU and GPU implementations. It also showcases NVIDIA profiling tools (nvprof) for performance analysis.
+
+## Components
+- compress.cpp: CPU implementation of image compression
+- compress.cu: CUDA GPU implementation of image compression
+- Sandesh.jpeg: Input image for processing
+- compressed_2x_CPU.jpg/compressed_2x_GPU.jpg: 2x downsampled output images (CPU/GPU)
+- compressed_4x_CPU.jpg/compressed_4x_GPU.jpg: 4x downsampled output images (CPU/GPU)
+- compress_profile.sqlite/compress_profile.nsys-rep: NVIDIA profiling data files
+- compressCPU/compress: Compiled CPU/GPU executables
+- run.txt: Commands for execution
+
+## Program Flow
+1. Load and resize the input image to a fixed size (1024x1024)
+2. Perform downsampling by averaging pixel blocks (2x2 or 4x4)
+3. Create compressed images with reduced resolution
+4. Save resulting compressed images
+5. Measure and display performance metrics
+6. Generate profiling data with NVIDIA tools
+
+## Key Concepts Demonstrated
+- Image downsampling as a compression technique
+- CUDA thread/block organization for image processing
+- Memory management for image data on CPU and GPU
+- Performance profiling using NVIDIA tools (nvprof)
+- Optimization analysis through profiling results
+- OpenCV integration for image I/O
+
+## Usage
+Run the CPU and GPU executables to compare performance. The NVIDIA profiling tools (nvprof or Nsight Systems) can be used to analyze the kernel execution details as shown in the run.txt file. 

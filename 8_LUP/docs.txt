@@ -1,0 +1,33 @@
+# LU Decomposition Example
+
+## Concept
+This program demonstrates LU decomposition, a matrix factorization technique used in numerical analysis. It compares implementations across CPU, OpenACC, and CUDA. LU decomposition factors a matrix into the product of a lower triangular matrix (L) and an upper triangular matrix (U).
+
+## Components
+- lup_cpu.cpp: Standard CPU implementation of LU decomposition
+- lup_openacc.cpp: OpenACC accelerated implementation
+- lup_cuda.cu: CUDA GPU implementation
+- lup/a.out/cpu_lu: Compiled CPU executables
+- cuda_lu: Compiled CUDA executable
+
+## Program Flow
+1. Initialize a random matrix A of size 1024×1024
+2. Perform LU decomposition to find matrices L and U where A ≈ L×U
+   - L is initialized as an identity matrix
+   - For each row/column:
+     - Compute elements of U (upper triangular matrix)
+     - Compute elements of L (lower triangular matrix)
+3. Measure and report execution time
+4. Display the top 8×8 blocks of the original matrix A and resulting L and U matrices
+
+## Key Concepts Demonstrated
+- Matrix factorization techniques
+- Numerical linear algebra algorithms
+- Parallelization strategies for complex algorithms
+- Performance comparison across different computing platforms
+- Memory access patterns in matrix operations
+- CUDA kernel design for matrix operations
+- OpenACC directive-based parallelization
+
+## Usage
+Run the CPU, OpenACC, and CUDA executables to compare their performance. The CUDA version should demonstrate significant speedup for large matrices due to its parallel execution model. 

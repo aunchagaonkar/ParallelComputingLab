@@ -1,0 +1,29 @@
+# Matrix Multiplication Example
+
+## Concept
+This program demonstrates matrix multiplication comparing CPU and GPU implementations. Matrix multiplication is a fundamental operation in linear algebra and showcases the parallel processing capabilities of GPUs.
+
+## Components
+- matMul.cpp: CPU implementation of matrix multiplication
+- matMul.cu: CUDA GPU implementation of matrix multiplication
+- matMulCPU: Compiled CPU executable
+- matMulGPU: Compiled GPU executable
+- run.txt: Commands for execution
+
+## Program Flow
+1. Initialize two matrices (A and B) with random values
+2. Display portions of the input matrices
+3. Perform matrix multiplication (C = A * B)
+4. Display a portion of the result matrix
+5. Measure and report execution time
+
+## Key Concepts Demonstrated
+- Basic matrix operations in linear algebra
+- Row-major memory layout for matrices
+- Nested loop implementation of matrix multiplication
+- Performance comparison between CPU and GPU implementations
+- Memory management for large data structures
+- Time measurement for performance analysis
+
+## Usage
+Run the CPU and GPU executables to compare their performance. The GPU version should demonstrate significant speedup for large matrices due to its parallel execution model. The program uses 1024×1024 matrices by default, showing the performance difference clearly. 

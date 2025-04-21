@@ -1,0 +1,40 @@
+# Fractal Image Compression Example
+
+## Concept
+This folder contains programs demonstrating fractal image compression techniques and image processing using SYCL heterogeneous computing. Fractal compression is based on the principle that parts of an image often resemble other parts of the same image at different scales.
+
+## Components
+- fractal.cpp: SYCL-based image downsampling implementation
+- compression.cpp: Fractal compression implementation using domain-range block matching
+- syclCompress.cpp: SYCL-accelerated image compression
+- Sandesh.jpeg: Input image for processing
+- output.png/output.jpeg/output1.png: Output images after compression
+- compress/syclCompress: Compiled executables
+- run.txt: Commands for execution
+
+## Program Flow for Fractal Compression
+1. Divide the image into non-overlapping range blocks (small regions)
+2. For each range block, search for a domain block (larger region) that resembles it after scaling
+3. Represent each range block as an affine transformation of a domain block
+4. Store these transformations instead of the original pixel data (compression)
+5. To decompress, start with any image and iteratively apply the transformations
+
+## Program Flow for SYCL Downsampling
+1. Load the input image from file
+2. Convert to appropriate format for processing
+3. Use SYCL to parallelize the downsampling operation across available hardware
+4. Reduce image resolution by averaging pixel blocks
+5. Save the resulting image
+
+## Key Concepts Demonstrated
+- Fractal image compression theory
+- Self-similarity in images
+- Affine transformations (scaling and brightness adjustments)
+- SYCL programming for heterogeneous computing
+- Parallel image processing algorithms
+- Domain and range block matching
+- Iterative decompression technique
+- Performance measurement and optimization
+
+## Usage
+Run the executables with the appropriate arguments as shown in run.txt. The fractal compression program requires an input image, output path, and number of decompression iterations. The SYCL programs automatically select an appropriate device for acceleration. 

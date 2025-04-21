@@ -1,0 +1,33 @@
+# Histogram Equalization Example
+
+## Concept
+This program demonstrates image enhancement using histogram equalization, comparing CPU and GPU implementations. Histogram equalization improves image contrast by redistributing intensity values.
+
+## Components
+- histogramEqualization.cpp: CPU implementation of histogram equalization
+- histogramEqualization.cu: CUDA GPU implementation of histogram equalization
+- Sandesh.jpeg: Input image for processing
+- result_cpu.jpg: Output image from CPU implementation
+- result_GPU.jpg: Output image from GPU implementation
+- histogramEqualizationCPU: Compiled CPU executable
+- histogramEqualizationGPU: Compiled GPU executable
+- run.txt: Commands for execution
+
+## Program Flow
+1. Load and resize input image to grayscale
+2. Calculate histogram (frequency distribution of pixel intensities)
+3. Compute cumulative distribution function (CDF)
+4. Apply histogram equalization by mapping original intensities to new values using the CDF
+5. Display and save the resulting enhanced image
+6. Compare performance between CPU and GPU implementations
+
+## Key Concepts Demonstrated
+- Image processing fundamentals
+- Histogram computation and manipulation
+- CUDA atomics for parallel histogram generation
+- Memory management for image data
+- Performance comparison between sequential and parallel implementations
+- OpenCV integration for image I/O
+
+## Usage
+The program takes an input image, processes it using both CPU and GPU implementations, and saves the enhanced images. Performance metrics are displayed to compare execution times. 

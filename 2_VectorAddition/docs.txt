@@ -1,0 +1,28 @@
+# Vector Addition Example
+
+## Concept
+This program demonstrates parallel vector addition comparing CPU and GPU implementations. It showcases basic CUDA programming concepts and performance differences.
+
+## Components
+- vectorAdditionCPU.cpp: CPU implementation of vector addition
+- vectorAdditionGPU.cu: CUDA GPU implementation of vector addition
+- vectorAdditionCPU: Compiled CPU executable
+- vectorAdditionGPU: Compiled GPU executable
+- run.txt: Commands for execution
+
+## Program Flow
+1. Allocate memory for three vectors (A, B, and C)
+2. Initialize vectors A and B with values (1 and 2)
+3. Perform vector addition (C = A + B)
+4. Time the execution using clock()
+5. Validate results and display performance metrics
+
+## Key Concepts Demonstrated
+- Basic CUDA programming model
+- Memory allocation and data transfer between CPU and GPU
+- Kernel launch configuration with thread blocks
+- Performance comparison between CPU and GPU implementations
+- Parallel execution of vector operations on CUDA-enabled GPUs
+
+## Usage
+Run the CPU and GPU executables to compare their performance. The GPU version should demonstrate significant speedup for large vector sizes due to its parallel execution model. 

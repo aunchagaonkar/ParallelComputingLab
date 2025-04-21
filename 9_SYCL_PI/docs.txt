@@ -1,0 +1,28 @@
+# SYCL PI Calculation Example
+
+## Concept
+This program demonstrates the calculation of π (pi) using the Monte Carlo method with both a standard CPU implementation and a SYCL-accelerated version. SYCL is a cross-platform abstraction layer for heterogeneous computing that enables code for multiple platforms (CPUs, GPUs, FPGAs).
+
+## Components
+- pi.cpp: Standard CPU implementation of Monte Carlo π calculation
+- SYCL_PI.cpp: SYCL implementation that can target various hardware accelerators
+- pi: Compiled CPU executable
+- run.txt: Commands for execution
+
+## Program Flow
+1. Generate a large number of random points (10 million for SYCL version)
+2. For each point, calculate if it falls within a unit circle
+3. Estimate π based on the ratio of points inside the circle to total points
+4. Measure and report execution time and the estimated value of π
+
+## Key Concepts Demonstrated
+- Monte Carlo simulation technique
+- SYCL programming model for heterogeneous computing
+- Parallel workload distribution using SYCL parallel_for
+- Atomic operations for thread-safe counting
+- Hardware-agnostic code that can run on CPUs, GPUs, and other accelerators
+- Performance measurement using std::chrono
+- Random number generation techniques in parallel computing
+
+## Usage
+Run both executables to compare their performance. The SYCL version automatically selects an appropriate device (CPU, GPU, or other accelerator) and provides information about the target device it's running on. The program estimates π using 10 million points for better accuracy. 

@@ -1,0 +1,34 @@
+# K-Means Clustering Example
+
+## Concept
+This program demonstrates K-means clustering, a popular unsupervised machine learning algorithm, with both CPU and GPU implementations. The algorithm partitions data points into K clusters based on feature similarity.
+
+## Components
+- kMeans.cpp: CPU implementation of K-means
+- kMeansCPU.cpp: Alternative CPU implementation
+- kMeans.cu: CUDA GPU implementation of K-means
+- kMeans/kMeansCPU: Compiled CPU executables
+- kmeans: Compiled GPU executable
+- IRIS.csv: The Iris flower dataset for clustering
+- run.txt: Commands for execution
+
+## Program Flow
+1. Load and parse the Iris dataset from CSV file
+2. Initialize K cluster centroids randomly from the dataset
+3. Iteratively perform the two main steps:
+   - Assign each data point to its nearest centroid
+   - Update centroids by calculating the mean of all points in each cluster
+4. Continue until convergence or maximum iterations reached
+5. Output final centroids and execution time
+
+## Key Concepts Demonstrated
+- Unsupervised machine learning
+- Iterative clustering algorithm
+- CUDA shared memory for efficient computation
+- Atomic operations for parallel updates
+- Distance calculation in multi-dimensional space
+- CSV file parsing and data preprocessing
+- Performance comparison between CPU and GPU implementations
+
+## Usage
+Run the CPU and GPU executables to compare their performance. The program processes the Iris dataset (150 samples with 4 features) and clusters them into 3 groups. The GPU version should demonstrate faster convergence for larger datasets. 
