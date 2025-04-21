@@ -1,0 +1,9 @@
+GPU(SYCL):
+    icpx -fsycl -o pi SYCL_PI.cpp 
+
+    ./pi
+
+CPU:
+    g++ -o pi pi.cpp
+
+    ./pi
