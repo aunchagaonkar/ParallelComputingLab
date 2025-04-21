@@ -1,0 +1,9 @@
+GPU:
+    nvcc -o histogramEqualizationGPU histogramEqualization.cu `pkg-config --cflags --libs opencv4`
+
+    histogramEqualizationGPU
+
+CPU:
+    g++ -o histogramEqualizationCPU histogramEqualization.cpp `pkg-config --cflags --libs opencv4`
+
+    ./histogramEqualizationCPU
