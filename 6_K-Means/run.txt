@@ -1,0 +1,16 @@
+GPU-CUDA:
+    nvcc -o kMeans kMeans.cu
+    
+    ./kMeans
+
+GPU-OpenACC:
+    pgc++ -o  kmeans kMeans.cpp -o kmeans
+    
+    ./kmeans
+
+CPU:
+     g++ -o kMeansCPU  kMeansCPU.cpp
+
+     ./kMeansCPU
+
+    
