@@ -1,0 +1,9 @@
+GPU:
+    icpx -fsycl -o syclCompress syclCompress.cpp  `pkg-config --cflags --libs opencv4`
+
+    ./syclCompress Sandesh.jpeg output.jpeg 10
+
+CPU:
+    g++ -o compress compression.cpp `pkg-config --cflags --libs opencv4`
+
+    ./compress Sandesh.jpeg output1.png 10
