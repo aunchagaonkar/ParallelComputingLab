@@ -1,0 +1,11 @@
+GPU:
+    nvcc -o matMulGPU matMul.cu
+
+    ./matMulGPU
+
+CPU:
+     g++ -o matMulCPU matMul.cpp
+
+     ./matMulCPU
+
+    
