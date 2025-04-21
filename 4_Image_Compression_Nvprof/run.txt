@@ -1,0 +1,15 @@
+GPU:
+    nvcc -o compress compress.cu `pkg-config --cflags --libs opencv4`
+
+    ./compress
+
+CPU:
+    g++ -o compressCPU compress.cpp `pkg-config --cflags --libs opencv4`
+
+    ./compressCPU
+
+
+Profiling:
+    nsys profile -o compress_profile ./compress
+
+    nsys stats compress_profile.nsys-rep
