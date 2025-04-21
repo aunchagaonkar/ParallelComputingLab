@@ -1,0 +1,11 @@
+GPU-OpenACC:
+    pgc++  -o openACCPI openACC_PI.cpp
+    
+    ./openACCPI
+
+CPU:
+    g++ -o pi pi.cpp 
+
+    ./pi
+
+    
