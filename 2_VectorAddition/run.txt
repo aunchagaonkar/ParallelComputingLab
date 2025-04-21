@@ -1,0 +1,9 @@
+GPU: 
+    nvcc -o vectorAdditionGPU vectorAdditionGPU.cu
+
+    ./vectorAdditionGPU
+
+CPU:
+    g++ -o vectorAdditionCPU vectorAdditionCPU.cpp
+
+    ./vectorAdditionCPU
