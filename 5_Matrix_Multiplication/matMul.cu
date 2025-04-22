@@ -1,66 +1,92 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
+#include <cuda_runtime.h>
 
-using namespace std;
+#define N 1024
+#define TILE_WIDTH 16
 
-void initializeMatrix(int* matrix, int N) {
-    for (int i = 0; i < N * N; i++) {
-        matrix[i] = rand() % 2;
-    }
-}
-
-void printMatrix(int* matrix, int N) {
-    for (int i = 0; i < 15; i++) {
-        for (int j = 0; j < 15; j++) {
-            cout << matrix[i * 15 + j] << " ";
+// CUDA Kernel: Matrix multiplication C = A * B
+__global__ void matMulKernel(const int* A, const int* B, int* C, int width) {
+    int row = blockIdx.y * blockDim.y + threadIdx.y;
+    int col = blockIdx.x * blockDim.x + threadIdx.x;
+    if (row < width && col < width) {
+        int sum = 0;
+        for (int k = 0; k < width; ++k) {
+            sum += A[row * width + k] * B[k * width + col];
         }
-        cout << endl;
-    }
-}
-
-void matrixMultiply(int* A, int* B, int* C, int N) {
-    for (int i = 0; i < N; i++) {
-        for (int j = 0; j < N; j++) {
-            int sum = 0;
-            for (int k = 0; k < N; k++) {
-                sum += A[i * N + k] * B[k * N + j];
-            }
-            C[i * N + j] = sum;
-        }
+        C[row * width + col] = sum;
     }
 }
 
 int main() {
-    int N = 1024;
+    const int size = N * N;
+    const int bytes = size * sizeof(int);
 
-    int* A = new int[N * N];
-    int* B = new int[N * N];
-    int* C = new int[N * N];
+    // Allocate host memory
+    int* h_A = (int*)malloc(bytes);
+    int* h_B = (int*)malloc(bytes);
+    int* h_C = (int*)malloc(bytes);
 
-    srand(time(0));
-    initializeMatrix(A, N);
-    initializeMatrix(B, N);
+    // Initialize input matrices with random 0/1 values
+    srand((unsigned)time(NULL));
+    for (int i = 0; i < size; ++i) {
+        h_A[i] = rand() % 2;
+        h_B[i] = rand() % 2;
+    }
 
-    cout << "Matrix A:" << endl;
-    printMatrix(A, N);
-    
-    cout << "Matrix B:" << endl;
-    printMatrix(B, N);
+    // Allocate device memory
+    int *d_A, *d_B, *d_C;
+    cudaMalloc(&d_A, bytes);
+    cudaMalloc(&d_B, bytes);
+    cudaMalloc(&d_C, bytes);
 
-    clock_t start = clock();
-    matrixMultiply(A, B, C, N);
-    clock_t end = clock();
+    // Copy inputs to device
+    cudaMemcpy(d_A, h_A, bytes, cudaMemcpyHostToDevice);
+    cudaMemcpy(d_B, h_B, bytes, cudaMemcpyHostToDevice);
 
-    cout << "Result Matrix C (A * B):" << endl;
-    printMatrix(C, N);
+    // Define block and grid dimensions
+    dim3 blockSize(TILE_WIDTH, TILE_WIDTH);
+    dim3 gridSize((N + blockSize.x - 1) / blockSize.x,
+                  (N + blockSize.y - 1) / blockSize.y);
 
-    double elapsed = double(end - start) / CLOCKS_PER_SEC * 1000.0;
-    cout << "Execution Time: " << elapsed << " ms" << endl;
+    // Timing using CUDA events
+    cudaEvent_t start, stop;
+    float elapsedTime = 0.0f;
+    cudaEventCreate(&start);
+    cudaEventCreate(&stop);
+    cudaEventRecord(start);
 
-    delete[] A;
-    delete[] B;
-    delete[] C;
+    // Launch kernel
+    matMulKernel<<<gridSize, blockSize>>>(d_A, d_B, d_C, N);
+
+    // Record end event and synchronize
+    cudaEventRecord(stop);
+    cudaEventSynchronize(stop);
+    cudaEventElapsedTime(&elapsedTime, start, stop);
+
+    // Copy result back to host
+    cudaMemcpy(h_C, d_C, bytes, cudaMemcpyDeviceToHost);
+
+    // Print execution time
+    std::cout << "GPU Execution Time: " << elapsedTime << " ms" << std::endl;
+
+    // Print a small portion of C for verification (15x15)
+    std::cout << "Result Matrix C (first 15x15):" << std::endl;
+    for (int i = 0; i < 15; ++i) {
+        for (int j = 0; j < 15; ++j) {
+            std::cout << h_C[i * N + j] << " ";
+        }
+        std::cout << std::endl;
+    }
+
+    // Clean up
+    cudaFree(d_A);
+    cudaFree(d_B);
+    cudaFree(d_C);
+    free(h_A);
+    free(h_B);
+    free(h_C);
 
     return 0;
 }
