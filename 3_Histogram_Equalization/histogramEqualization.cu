@@ -34,7 +34,7 @@ __global__ void equalize(unsigned char* in, unsigned char* out, int* cdf, int pi
 // **Main Function**
 int main() {
     // **Load Grayscale Image**
-    cv::Mat img = cv::imread("Sandesh.jpeg", cv::IMREAD_GRAYSCALE);
+    cv::Mat img = cv::imread("Ameya.jpg", cv::IMREAD_GRAYSCALE);
     if (img.empty()) {
         cerr << "Error: Could not load image!" << endl;
         return -1;

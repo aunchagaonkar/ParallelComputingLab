@@ -35,7 +35,7 @@ void equalize(const Mat& img, Mat& result, int* cdf) {
 
 int main() {
     // Load Image in Grayscale
-    Mat img = imread("Sandesh.jpeg", IMREAD_GRAYSCALE);
+    Mat img = imread("Ameya.jpg", IMREAD_GRAYSCALE);
     if (img.empty()) {
         cerr << "Error: Could not load image!" << endl;
         return -1;
