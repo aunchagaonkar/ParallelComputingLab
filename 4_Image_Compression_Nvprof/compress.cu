@@ -46,7 +46,7 @@ void compressImage(const cv::Mat& inputImg, cv::Mat& outputImg, int factor) {
 
 int main() {
     // Load input image
-    cv::Mat inputImg = cv::imread("Sandesh.jpeg", cv::IMREAD_GRAYSCALE);
+    cv::Mat inputImg = cv::imread("Ameya.jpg", cv::IMREAD_GRAYSCALE);
     if (inputImg.empty()) {
         std::cerr << "Error loading image!" << std::endl;
         return -1;
